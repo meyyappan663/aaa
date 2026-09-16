@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AniVerse — Trending Anime</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="logo" href="#" onclick="showSection('trending')">
+        <span class="logo-icon">⛩</span> AniVerse
+      </a>
+
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Search anime..." autocomplete="off" />
+        <button id="searchBtn"><i class="fa fa-search"></i></button>
+        <ul class="search-suggestions" id="searchSuggestions"></ul>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link active" data-section="trending">🔥 Trending</a></li>
+        <li><a href="#" class="nav-link" data-section="seasonal">🌸 This Season</a></li>
+        <li><a href="#" class="nav-link" data-section="upcoming">🚀 Upcoming</a></li>
+        <li><a href="#" class="nav-link" data-section="top">🏆 All-Time Top</a></li>
+        <li><a href="#" class="nav-link" data-section="genres">🎭 Genres</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger"><i class="fa fa-bars"></i></button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#" class="nav-link" data-section="trending">🔥 Trending</a>
+      <a href="#" class="nav-link" data-section="seasonal">🌸 This Season</a>
+      <a href="#" class="nav-link" data-section="upcoming">🚀 Upcoming</a>
+      <a href="#" class="nav-link" data-section="top">🏆 All-Time Top</a>
+      <a href="#" class="nav-link" data-section="genres">🎭 Genres</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Discover <span class="gradient-text">Trending Anime</span></h1>
+      <p class="hero-sub">Your gateway to the hottest anime — currently airing, seasonal picks, and all-time classics.</p>
+      <button class="cta-btn" onclick="showSection('trending')">Explore Now <i class="fa fa-arrow-right"></i></button>
+    </div>
+    <div class="hero-cards">
+      <!-- Animated floating cards filled by JS -->
+      <div class="hero-card-slot" id="heroCard1"></div>
+      <div class="hero-card-slot" id="heroCard2"></div>
+      <div class="hero-card-slot" id="heroCard3"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="section-title" id="sectionTitle">🔥 Trending Now</h2>
+      <div class="filters" id="filters"></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="anime-grid" id="animeGrid"></div>
+
+    <!-- Loading Spinner -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Loading anime...</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-state" id="errorState" style="display:none">
+      <i class="fa fa-exclamation-circle"></i>
+      <p id="errorMsg">Something went wrong.</p>
+      <button onclick="retryFetch()">Retry</button>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+  </main>
+
+  <!-- ═══════════════ GENRES SECTION ═══════════════ -->
+  <section class="genres-section" id="genresSection" style="display:none">
+    <h2 class="section-title">🎭 Browse by Genre</h2>
+    <div class="genres-grid" id="genresGrid"></div>
+  </section>
+
+  <!-- ═══════════════ DETAIL MODAL ═══════════════ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose"><i class="fa fa-times"></i></button>
+      <div class="modal-inner" id="modalInner">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TOAST ═══════════════ -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <p>🎌 AniVerse — Powered by <a href="https://jikan.moe" target="_blank">Jikan API</a> &amp; MyAnimeList</p>
+    <p style="font-size:0.75rem;opacity:.5;margin-top:.3rem">Data © MyAnimeList. For educational purposes only.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
